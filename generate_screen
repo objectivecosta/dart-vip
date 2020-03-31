@@ -1,0 +1,17 @@
+#!/usr/bin/ruby
+require_relative('interactor_template')
+require_relative('presenter_template')
+require_relative('view_template')
+require_relative('model_template')
+
+name = ARGV[0]
+path = ARGV[1]
+
+Dir.mkdir "#{path}/business"
+Dir.mkdir "#{path}/presentation"
+Dir.mkdir "#{path}/models"
+
+File.write("#{path}/business/#{name}Interactor.dart", interactor_template(name))
+File.write("#{path}/presentation/#{name}Presenter.dart", presenter_template(name))
+File.write("#{path}/models/#{name}FetchSomethingModels.dart", model_template(name, "FetchSomething"))
+File.write("#{path}/#{name}.dart", view_template(name))
